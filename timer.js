@@ -14,27 +14,29 @@ class Timer{
             this.onComplete = callbacks.onComplete;
         }
     }
-    
-    
+
+
     stop =()=>{
         clearInterval(this.interval);
         this.onComplete()
         this.timeRemaining = this.originalTimerVal;
-        
+
         console.log('Stopping')
+        this.startButton.disabled = false
     }
 
     start =()=>{
         if (this.onStart){
             this.onStart(this.timeRemaining);
         }
+        this.startButton.disabled=true
         this.tick()
         this.interval = setInterval(this.tick, 50)
     }
 
     tick =()=>{
 
-        
+
         if (this.timeRemaining<=0){
             this.pause();
             if (this.onComplete) {
@@ -49,6 +51,7 @@ class Timer{
     pause = () =>{
         console.log('pause called')
         clearInterval(this.interval);
+        this.startButton.disabled = false
     }
 
     get timeRemaining(){
