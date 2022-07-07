@@ -12,6 +12,7 @@ class Timer{
             this.onStart = callbacks.onStart;
             this.onTick = callbacks.onTick;
             this.onComplete = callbacks.onComplete;
+            
         }
     }
 
@@ -23,6 +24,7 @@ class Timer{
 
         console.log('Stopping')
         this.startButton.disabled = false
+        this.durationInput.disabled= false
     }
 
     start =()=>{
@@ -30,6 +32,7 @@ class Timer{
             this.onStart(this.timeRemaining);
         }
         this.startButton.disabled=true
+        this.durationInput.disabled=true
         this.tick()
         this.interval = setInterval(this.tick, 50)
     }
